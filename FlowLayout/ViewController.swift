@@ -14,7 +14,6 @@ class CustomCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = .red
         
-        //heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     
     required init?(coder: NSCoder) {
