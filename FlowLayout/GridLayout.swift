@@ -12,25 +12,19 @@ class GridLayout: UICollectionViewFlowLayout {
     
     private var computedContentSize: CGSize = .zero
     private var columns: CGFloat = 1
-    private var insets: UIEdgeInsets = .zero
     private var cellAttributes: [IndexPath : UICollectionViewLayoutAttributes] = [:]
     
     override init() {
         super.init()
     }
     
-    convenience init(
-        columns: Int,
-        insets: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16),
-        spacing: CGFloat = 8) {
-        
+    convenience init(columns: Int, insets: UIEdgeInsets = .zero, spacing: CGFloat = 0) {
         self.init()
-        scrollDirection = .vertical
         self.columns = CGFloat(columns)
-        self.insets = insets
         sectionInset = insets
         minimumInteritemSpacing = spacing
         minimumLineSpacing = spacing
+        scrollDirection = .vertical
     }
     
     required init?(coder: NSCoder) {

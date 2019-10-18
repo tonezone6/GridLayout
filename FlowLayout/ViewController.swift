@@ -13,7 +13,6 @@ class CustomCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .red
-        
     }
     
     required init?(coder: NSCoder) {
@@ -25,9 +24,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: GridLayout(columns: 4))
+        let insets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        let layout = GridLayout(columns: 5, insets: insets, spacing: 8)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
@@ -52,7 +52,11 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCell else {
+            fatalError()
+        }
+        cell.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: (1 - CGFloat(indexPath.section)/3))
+        return cell
     }
 }
 
