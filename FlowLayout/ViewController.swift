@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let insets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        let layout = GridLayout(columns: 5, insets: insets, spacing: 8)
+        let layout = GridLayout(columns: 5, insets: insets, spacing: 4)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
